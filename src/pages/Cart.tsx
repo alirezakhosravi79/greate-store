@@ -1,7 +1,12 @@
+// import { useContext } from "react";
 import Button from "../components/Button";
 import CartItem from "../components/CartItem";
+import {  useCartContext } from "../context/CartContext";
 
 function Cart() {
+  //6-2 greftan value from custom hoook
+  const {cartItems } = useCartContext()
+
   return (
     <section className="container mx-auto px-4 py-8">
       <div className="bg-gray-900 rounded-2xl shadow-lg p-6 sm:p-10">
@@ -10,10 +15,12 @@ function Cart() {
         </h1>
 
         <div className="space-y-6">
-          <CartItem />
-          <CartItem />
-          <CartItem />
-          <CartItem />
+          {
+            cartItems.map((item) => (
+              <CartItem {...item}/>
+
+            ))
+          }
         </div>
 
         <div className="bg-gray-800 mt-10 rounded-xl p-6 text-white space-y-3 text-lg sm:text-xl">
